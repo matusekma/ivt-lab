@@ -12,6 +12,7 @@ public class GT4500Test {
 
   @BeforeEach
   public void init(){
+    // new GT4500 spaceship
     this.ship = new GT4500();
   }
 
