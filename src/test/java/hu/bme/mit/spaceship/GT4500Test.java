@@ -12,7 +12,11 @@ public class GT4500Test {
 
   @BeforeEach
   public void init(){
+<<<<<<< HEAD
     // create ship
+=======
+    // new GT4500 spaceship
+>>>>>>> branch-B
     this.ship = new GT4500();
   }
 
