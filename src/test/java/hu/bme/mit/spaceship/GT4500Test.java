@@ -163,7 +163,7 @@ public class GT4500Test {
   }
 
   @Test
-  public void fireTorpedo_Single_Twice(){
+  public void fireTorpedo_Single_Both(){
     // Arrange
     when(mockPrimaryTs.isEmpty()).thenReturn(false);
     when(mockPrimaryTs.fire(1)).thenReturn(true);
@@ -181,5 +181,27 @@ public class GT4500Test {
     verify(mockPrimaryTs, times(1)).fire(1);
     verify(mockSecondaryTs, times(1)).fire(1);
   }
+
+  @Test
+  public void fireTorpedo_Single_Primary_Twice(){
+    // Arrange
+    when(mockPrimaryTs.isEmpty()).thenReturn(false);
+    when(mockPrimaryTs.fire(1)).thenReturn(true);
+
+    when(mockSecondaryTs.isEmpty()).thenReturn(true);
+    when(mockSecondaryTs.fire(1)).thenReturn(true);
+    // Act
+    boolean result1 = ship.fireTorpedo(FiringMode.SINGLE);
+    boolean result2 = ship.fireTorpedo(FiringMode.SINGLE);
+
+    // Assert
+    assertEquals(true, result1);
+    assertEquals(true, result2);
+
+    verify(mockPrimaryTs, times(2)).fire(1);
+    verify(mockSecondaryTs, times(0)).fire(1);
+  }
+
+
 
 }
